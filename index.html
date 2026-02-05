@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine's Date Mission 💘</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #ffb6c1, #ff4d6d);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }h1 {
+  margin-top: 40px;
+  font-size: 2.6rem;
+}
+
+.container { padding: 25px; }
+
+button {
+  background: #fff;
+  color: #ff4d6d;
+  border: none;
+  padding: 16px 34px;
+  font-size: 1.15rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* Wheel */
+.wheel-container { display:none; margin-top:40px; }
+
+.pointer {
+  width:0;height:0;
+  border-left:15px solid transparent;
+  border-right:15px solid transparent;
+  border-bottom:30px solid #fff;
+  margin:0 auto 12px;
+}
+
+.wheel {
+  width:300px;height:300px;
+  border-radius:50%;
+  border:8px solid #fff;
+  margin:0 auto;
+  position:relative;
+  transition:transform 4s cubic-bezier(0.17,0.67,0.32,1.34);
+  box-shadow:0 0 30px rgba(255,255,255,0.6);
+}
+
+.slice {
+  position:absolute;
+  width:50%;height:50%;
+  top:50%;left:50%;
+  transform-origin:0% 0%;
+  background:rgba(255,255,255,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:bold;
+}
+
+/* Epic reveal */
+.final { display:none; margin-top:50px; animation:fadeIn 2s ease forwards; }
+
+.boss {
+  font-size:2.4rem;
+  margin-bottom:10px;
+  color:#fff;
+  text-shadow:0 0 15px gold, 0 0 30px orange;
+  animation:epicPulse 1.4s infinite;
+}
+
+.question {
+  font-size:1.6rem;
+  margin:25px 0 15px;
+}
+
+.choices button {
+  margin:10px;
+  background:#ffefef;
+  color:#ff4d6d;
+  font-weight:bold;
+}
+
+iframe {
+  display:none;
+  width:92%;
+  max-width:620px;
+  height:360px;
+  border-radius:22px;
+  border:4px solid #fff;
+  margin-top:25px;
+  animation:fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform:scale(0.9); }
+  to { opacity:1; transform:scale(1); }
+}
+
+@keyframes epicPulse {
+  0% { transform:scale(1); }
+  50% { transform:scale(1.08); }
+  100% { transform:scale(1); }
+}
+
+  </style>
+</head>
+<body>  <h1>💖 Valentine’s Date Mission 💖</h1>  <div class="container">
+    <p>Spin the wheel to reveal our destiny 🎡</p>
+    <button onclick="showWheel()">Start</button><div class="wheel-container" id="wheelContainer">
+  <div class="pointer"></div>
+  <div class="wheel" id="wheel">
+    <div class="slice" style="transform:rotate(0deg) skewY(-45deg);">CHOPS</div>
+    <div class="slice" style="transform:rotate(90deg) skewY(-45deg);">McDoo</div>
+    <div class="slice" style="transform:rotate(180deg) skewY(-45deg);">Burger King</div>
+    <div class="slice" style="transform:rotate(270deg) skewY(-45deg);">Plume</div>
+  </div>
+  <br />
+  <button onclick="spinWheel()">Spin 💖</button>
+</div>
+
+<div class="final" id="final">
+  <div class="boss">🔥 CHOPS UNLOCKED 🔥</div>
+  <p style="font-size:1.3rem;"><strong>The location will be: CHOPS ❤️</strong></p>
+
+  <div class="question">Are you coming with me? 💖</div>
+  <div class="choices">
+    <button onclick="showMap()">Yes 😍</button>
+    <button onclick="showMap()">Yes ❤️</button>
+  </div>
+
+  <iframe id="map"
+    src="https://www.google.com/maps?q=Chops+Restaurant+Lebanon&output=embed"
+    allowfullscreen
+    loading="lazy">
+  </iframe>
+
+  <p id="mapsBtn" style="margin-top:20px; display:none;">
+    <a href="https://www.google.com/maps/search/?api=1&query=Chops+Restaurant+Lebanon" target="_blank" style="color:white; text-decoration:underline;">
+      Open location in Google Maps 🗺️
+    </a>
+  </p>
+</div>
+
+  </div>  <script>
+    function showWheel() {
+      document.getElementById('wheelContainer').style.display = 'block';
+    }
+
+    function spinWheel() {
+      const wheel = document.getElementById('wheel');
+      // Epic spin landing on CHOPS (not obvious to user)
+      wheel.style.transform = 'rotate(1530deg)';
+
+      setTimeout(() => {
+        document.getElementById('final').style.display = 'block';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }, 4200);
+    }
+
+    function showMap() {
+      document.getElementById('map').style.display = 'block';
+      document.getElementById('mapsBtn').style.display = 'block';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  </script></body>
+</html>
